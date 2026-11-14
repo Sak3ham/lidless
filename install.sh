@@ -124,11 +124,19 @@ if [ "$(cat "$RULE" 2>/dev/null)" != "$RULE_TEXT" ]; then
   tmp_rule=$(mktemp)
   echo "$RULE_TEXT" > "$tmp_rule"
   /usr/sbin/visudo -cf "$tmp_rule" >/dev/null || { rm -f "$tmp_rule"; fail "Could not build the sleep rule."; }
-  dim "Type your Mac login password and press Enter. Nothing shows while you type; that is normal."
-  if sudo -p "Mac password: " install -m 0440 -o root -g wheel "$tmp_rule" "$RULE" < /dev/tty; then
+  RULE_OK=""
+  # Ask with the standard macOS password window (Touch ID works there too).
+  # Typing into a password prompt inside some terminals does not work, so the
+  # terminal prompt is only a fallback for when no window can be shown (SSH).
+  echo "A macOS password window will open. Enter your Mac login password there."
+  gui_out=$(osascript -e "do shell script \"/usr/bin/install -m 0440 -o root -g wheel '$tmp_rule' '$RULE'\" with prompt \"lidless needs your password once, so your Mac can stay awake with the lid closed while Claude works.\" with administrator privileges" 2>&1) && gui_status=0 || gui_status=$?
+  if [ $gui_status -eq 0 ]; then
     RULE_OK=yes
+  elif echo "$gui_out" | grep -q -- "-128"; then
+    echo "Password window cancelled."
   else
-    RULE_OK=""
+    dim "No password window available. Type your Mac login password and press Enter (nothing shows while you type)."
+    sudo -p "Mac password: " install -m 0440 -o root -g wheel "$tmp_rule" "$RULE" < /dev/tty && RULE_OK=yes
   fi
   rm -f "$tmp_rule"
 else
