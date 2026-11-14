@@ -124,7 +124,8 @@ if [ "$(cat "$RULE" 2>/dev/null)" != "$RULE_TEXT" ]; then
   tmp_rule=$(mktemp)
   echo "$RULE_TEXT" > "$tmp_rule"
   /usr/sbin/visudo -cf "$tmp_rule" >/dev/null || { rm -f "$tmp_rule"; fail "Could not build the sleep rule."; }
-  if sudo install -m 0440 -o root -g wheel "$tmp_rule" "$RULE" < /dev/tty; then
+  dim "Type your Mac login password and press Enter. Nothing shows while you type; that is normal."
+  if sudo -p "Mac password: " install -m 0440 -o root -g wheel "$tmp_rule" "$RULE" < /dev/tty; then
     RULE_OK=yes
   else
     RULE_OK=""
