@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>lidless: close the lid, Claude keeps working</title>
+  <meta name="description" content="Closed your Mac before leaving home? lidless keeps it awake while Claude Code works, so your session stays online on your phone.">
+  <meta name="theme-color" content="#fbfbfd">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111113'/%3E%3Crect x='8' y='19' width='16' height='3' rx='1.5' fill='%2334c759'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>lidless</a>
+    <a class="top-link" href="https://github.com/Sak3ham/lidless">GitHub</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">For Claude Code on macOS</p>
+        <h1>Close the lid.<br><span class="soft"><span class="claude">Claude</span> keeps working.</span></h1>
+        <p class="lede">Left home and shut your Mac on the way out? lidless keeps it awake while Claude works, and every session stays on your phone.</p>
+
+        <button class="cmd" id="copy" type="button" aria-label="Copy install command">
+          <code id="command">curl -fsSL lidless-mac.vercel.app/install | bash</code>
+          <span class="cmd-copy" id="copy-label">Copy</span>
+        </button>
+        <p class="cmd-note">Paste in Terminal. Asks for your Mac password once.</p>
+      </div>
+
+      <figure class="art">
+        <div class="art-frame">
+          <img src="img/hero.jpg" alt="A silver laptop with its lid shut and a green light on, beside a phone still showing the Claude session with a new reply." width="1060" height="700">
+          <!-- Stickers slapped around the render. -->
+          <span class="sticker s-zzz" aria-hidden="true"><s>zzz</s> not today</span>
+          <span class="sticker s-time" aria-hidden="true">3:12 am · 48 tests passed</span>
+          <span class="sticker s-bus" aria-hidden="true">PR opened from the bus</span>
+        </div>
+        <figcaption class="art-caption"><span class="status-dot" aria-hidden="true"></span>Lid closed · session still online</figcaption>
+      </figure>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>lid shut</span><span>claude still typing</span><span>tests passing</span><span>mac wide awake</span><span>you, on the bus</span><span>pr opened</span><span>back to sleep</span>
+        <span>lid shut</span><span>claude still typing</span><span>tests passing</span><span>mac wide awake</span><span>you, on the bus</span><span>pr opened</span><span>back to sleep</span>
+      </div>
+    </div>
+
+    <section class="points" aria-label="What lidless fixes">
+      <div class="point" data-tint="sun">
+        <span class="point-num">1</span>
+        <h2>Laptop stays home</h2>
+        <p>Every session shows up in the Claude app on your phone.</p>
+      </div>
+      <div class="point" data-tint="pink">
+        <span class="point-num">2</span>
+        <h2>No link to copy</h2>
+        <p>Remote Control turns on for every session by itself.</p>
+      </div>
+      <div class="point" data-tint="sky">
+        <span class="point-num">3</span>
+        <h2>Lid shut by habit</h2>
+        <p>The Mac stays awake while Claude works, then sleeps as usual.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Lets the Mac sleep on low battery or heat. Remove anytime with <code>lidless uninstall</code>.</p>
+    <p>Made by Saksham Bansal · MIT · <a href="https://github.com/Sak3ham/lidless">Source</a></p>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>
